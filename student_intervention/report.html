@@ -11859,7 +11859,7 @@ div#notebook {
 <span class="n">n_students</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># TODO: Calculate number of features</span>
-<span class="n">n_features</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">n_features</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
 
 <span class="c1"># TODO: Calculate passing students</span>
 <span class="n">n_passed</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="p">[</span><span class="n">student_data</span><span class="o">.</span><span class="n">passed</span> <span class="o">==</span> <span class="s1">&#39;yes&#39;</span><span class="p">])</span>
@@ -11889,7 +11889,7 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Total number of students: 395
-Number of features: 31
+Number of features: 30
 Number of students who passed: 265
 Number of students who failed: 130
 Graduation rate of the class: 67.09%
@@ -12081,7 +12081,7 @@ Feature values:
 <span class="n">num_test</span> <span class="o">=</span> <span class="n">X_all</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">num_train</span>
 
 <span class="c1"># TODO: Shuffle and split the dataset into the number of training and testing points above</span>
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="n">num_test</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="n">num_test</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_all</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Show the results of the split</span>
 <span class="k">print</span> <span class="s2">&quot;Training set has {} samples.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -12290,7 +12290,7 @@ It has also been used in facial recognition software and work very well with fro
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import the three supervised learning models from sklearn</span>
@@ -12335,67 +12335,67 @@ It has also been used in facial recognition software and work very well with fro
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>================================================================================
 Training a DecisionTreeClassifier using a training set size of 100. . .
-Trained model in 0.0007 seconds
+Trained model in 0.0011 seconds
 Made predictions in 0.0002 seconds.
 F1 score for training set: 1.0000.
-Made predictions in 0.0002 seconds.
-F1 score for test set: 0.6496.
+Made predictions in 0.0001 seconds.
+F1 score for test set: 0.6050.
 --------------------------------------------------------------------------------
 Training a DecisionTreeClassifier using a training set size of 200. . .
 Trained model in 0.0010 seconds
 Made predictions in 0.0002 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0001 seconds.
-F1 score for test set: 0.7231.
+F1 score for test set: 0.6393.
 --------------------------------------------------------------------------------
 Training a DecisionTreeClassifier using a training set size of 300. . .
 Trained model in 0.0015 seconds
 Made predictions in 0.0002 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0002 seconds.
-F1 score for test set: 0.7107.
+F1 score for test set: 0.7391.
 --------------------------------------------------------------------------------
 ================================================================================
 Training a GaussianNB using a training set size of 100. . .
 Trained model in 0.0005 seconds
 Made predictions in 0.0002 seconds.
-F1 score for training set: 0.8550.
+F1 score for training set: 0.7966.
 Made predictions in 0.0002 seconds.
-F1 score for test set: 0.7481.
+F1 score for test set: 0.6379.
 --------------------------------------------------------------------------------
 Training a GaussianNB using a training set size of 200. . .
-Trained model in 0.0006 seconds
+Trained model in 0.0005 seconds
 Made predictions in 0.0002 seconds.
-F1 score for training set: 0.8321.
+F1 score for training set: 0.8148.
 Made predictions in 0.0002 seconds.
-F1 score for test set: 0.7132.
+F1 score for test set: 0.7344.
 --------------------------------------------------------------------------------
 Training a GaussianNB using a training set size of 300. . .
 Trained model in 0.0006 seconds
-Made predictions in 0.0002 seconds.
-F1 score for training set: 0.8088.
+Made predictions in 0.0003 seconds.
+F1 score for training set: 0.8190.
 Made predictions in 0.0002 seconds.
 F1 score for test set: 0.7500.
 --------------------------------------------------------------------------------
 ================================================================================
 Training a RandomForestClassifier using a training set size of 100. . .
-Trained model in 0.0105 seconds
+Trained model in 0.0113 seconds
 Made predictions in 0.0006 seconds.
 F1 score for training set: 0.9844.
 Made predictions in 0.0005 seconds.
-F1 score for test set: 0.7669.
+F1 score for test set: 0.6349.
 --------------------------------------------------------------------------------
 Training a RandomForestClassifier using a training set size of 200. . .
-Trained model in 0.0110 seconds
+Trained model in 0.0311 seconds
 Made predictions in 0.0007 seconds.
-F1 score for training set: 0.9924.
+F1 score for training set: 0.9926.
 Made predictions in 0.0006 seconds.
-F1 score for test set: 0.7153.
+F1 score for test set: 0.6667.
 --------------------------------------------------------------------------------
 Training a RandomForestClassifier using a training set size of 300. . .
-Trained model in 0.0118 seconds
+Trained model in 0.0115 seconds
 Made predictions in 0.0008 seconds.
-F1 score for training set: 0.9976.
+F1 score for training set: 0.9926.
 Made predictions in 0.0006 seconds.
 F1 score for test set: 0.7727.
 --------------------------------------------------------------------------------
@@ -12435,24 +12435,24 @@ F1 score for test set: 0.7727.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0007</td>
-<td style="text-align:center">0.0002</td>
+<td style="text-align:center">0.0006</td>
+<td style="text-align:center">0.0001</td>
 <td style="text-align:center">1.0000</td>
-<td style="text-align:center">0.6496</td>
+<td style="text-align:center">0.6050</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0010</td>
+<td style="text-align:center">0.0009</td>
 <td style="text-align:center">0.0001</td>
 <td style="text-align:center">1.0000</td>
-<td style="text-align:center">0.7231</td>
+<td style="text-align:center">0.6393</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
 <td style="text-align:center">0.0015</td>
-<td style="text-align:center">0.0002</td>
+<td style="text-align:center">0.0001</td>
 <td style="text-align:center">1.0000</td>
-<td style="text-align:center">0.7107</td>
+<td style="text-align:center">0.7391</td>
 </tr>
 </tbody>
 </table>
@@ -12469,23 +12469,23 @@ F1 score for test set: 0.7727.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0005</td>
+<td style="text-align:center">0.0004</td>
 <td style="text-align:center">0.0002</td>
-<td style="text-align:center">0.8550</td>
-<td style="text-align:center">0.7481</td>
+<td style="text-align:center">0.7966</td>
+<td style="text-align:center">0.6379</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0006</td>
+<td style="text-align:center">0.0005</td>
 <td style="text-align:center">0.0002</td>
-<td style="text-align:center">0.8321</td>
-<td style="text-align:center">0.7132</td>
+<td style="text-align:center">0.8148</td>
+<td style="text-align:center">0.7344</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0006</td>
+<td style="text-align:center">0.0007</td>
 <td style="text-align:center">0.0002</td>
-<td style="text-align:center">0.8088</td>
+<td style="text-align:center">0.8190</td>
 <td style="text-align:center">0.7500</td>
 </tr>
 </tbody>
@@ -12503,23 +12503,23 @@ F1 score for test set: 0.7727.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0105</td>
+<td style="text-align:center">0.0110</td>
 <td style="text-align:center">0.0005</td>
 <td style="text-align:center">0.9844</td>
-<td style="text-align:center">0.7669</td>
+<td style="text-align:center">0.6349</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0110</td>
+<td style="text-align:center">0.0109</td>
 <td style="text-align:center">0.0006</td>
-<td style="text-align:center">0.9924</td>
-<td style="text-align:center">0.7153</td>
+<td style="text-align:center">0.9926</td>
+<td style="text-align:center">0.6667</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0118</td>
+<td style="text-align:center">0.0115</td>
 <td style="text-align:center">0.0006</td>
-<td style="text-align:center">0.9976</td>
+<td style="text-align:center">0.9926</td>
 <td style="text-align:center">0.7727</td>
 </tr>
 </tbody>
@@ -12577,7 +12577,13 @@ F1 score for test set: 0.7727.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>Random Forest Classifier is part of the esemble methods family which means it uses multiple classifiers in this case multiple Decision Tree's which as a result produces a better outcome. It trains those desicion trees on different sub-sets of our training data using a subset of our features hense the name "Random Forest". When we run our tests it takes the prediction of each tree and determines the prediction most predicted which is then returned.</p>
+<p>Random Forest Classifier is part of the esemble methods family which means it uses multiple classifiers in this case multiple Decision Tree's which as a result produces a better outcome. It trains those desicion trees on different sub-sets of our training data using a sub-set of our features hense the name "Random Forest". 
+The way each decition tree is trained is by:</p>
+<p>1) We start with our training dataset which contains our features (absences, health etc.) and our classification (passed or failed)</p>
+<p>2) Determines the best attribute in the dataset to start our first node; this is where we will start splitting the data</p>
+<p>3) Split the dataset into subsets that correspond to the possible values of the best attribute; an example of this would be if absences were chosen possible values could be "less than 10", "more than 10 less than 15" and "more than 15"</p>
+<p>4) Recursively make new decision tree nodes with the subsets of data created in step 3, if there are no more features left to split on we take the most popular classification; i.e if we continue from our previous example in step 3 let say 10 people passed and 10 failed for students who were absent for less than 10 days, this doesn't give use a clear indication of whether or not the absent time of less than 10 days determines a fail or pass (it's 50/50 at this point), so what we do is further split this subset of data into another feature (a new node) and repeat the process until we no longer have any features to split on.</p>
+<p>Finally when we run our tests it takes the prediction of each tree and determines the prediction most predicted which is then returned.</p>
 
 </div>
 </div>
@@ -12608,7 +12614,7 @@ F1 score for test set: 0.7727.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;GridSearchCV&#39; and &#39;make_scorer&#39;</span>
@@ -12652,10 +12658,10 @@ F1 score for test set: 0.7727.
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Made predictions in 0.0011 seconds.
-Tuned model has a training F1 score of 0.8841.
-Made predictions in 0.0009 seconds.
-Tuned model has a testing F1 score of 0.7919.
+<pre>Made predictions in 0.0015 seconds.
+Tuned model has a training F1 score of 0.9975.
+Made predictions in 0.0011 seconds.
+Tuned model has a testing F1 score of 0.8108.
 </pre>
 </div>
 </div>
@@ -12680,7 +12686,7 @@ Tuned model has a testing F1 score of 0.7919.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>When using GridSearchCV to tune our model we get a final F<sub>1</sub> score of 0.8841 for our training set and 0.7919 for our testing set. We also gained a much better training time of 0.0011s versus 0.0118s on our untuned model at 300 training samples and better performance with a F<sub>1</sub> testing score of 0.7919 versus 0.7727 on our untuned model.</p>
+<p>When using GridSearchCV to tune our model we get a final F<sub>1</sub> score of 0.9975 for our training set and 0.8108 for our testing set. We also gained a much better training time of 0.0011s versus 0.0115s on our untuned model at 300 training samples and better performance with a F<sub>1</sub> testing score of 0.8108 versus 0.7727 on our untuned model.</p>
 <p>As a final conclution we should expect our tuned model to be able to generlize better on out-of-sample data and less resource hungry when training as our dataset grows.</p>
 
 </div>
