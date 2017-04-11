@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  anaconda:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    container_name: capstone
+    image: capstone/anaconda
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./:/opt/notebooks
