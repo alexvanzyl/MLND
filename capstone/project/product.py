@@ -1,7 +1,7 @@
 import json
 
 
-class Product(object):
+class Product:
 
     def __init__(self):
         self.data_file = 'products.json'
