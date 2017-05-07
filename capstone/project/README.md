@@ -2,7 +2,7 @@
 ## Project: Capstone
 
 ### General
-The report.pdf contains all the details of project and findings. Although not required to read 
+The report.pdf contains all the details of the project and the findings. Although not required to read 
 the report should you wish to run the Jupter Notebook (capstone.ipynd) which contains the data
 exploration using python please follow the installation instructions below.
 
