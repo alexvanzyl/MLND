@@ -9,6 +9,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 class Engine:
     def __init__(self):
         self.similarities = []
+        self.tfidf_matrix = []
 
     def train_on(self, key, **kwargs):
         """
@@ -23,22 +24,24 @@ class Engine:
         start = time.time()
 
         tf = TfidfVectorizer(analyzer='word', stop_words='english', **kwargs)
-        tfidf_matrix = tf.fit_transform(text_data['text'])
-        cosine_similarities = cosine_similarity(tfidf_matrix, tfidf_matrix)
+        self.tfidf_matrix = tf.fit_transform(text_data['text'])
+
         print("Engine trained in %s seconds." % (time.time() - start))
 
-        self.set_similarities(text_data, cosine_similarities)
+        self.set_similarities(text_data)
 
         return tf
 
-    def set_similarities(self, text_data, cosine_similarities):
+    def set_similarities(self, text_data):
         """
         Return a list of all similar items for each product based
         on what was calculated by cosine similarity equation.
         :param text_data: DataFrame of the text used to train tf-idf.
-        :param cosine_similarities: similarity scores.
         :return: custom list of similarity scores.
         """
+
+        cosine_similarities = cosine_similarity(self.tfidf_matrix, self.tfidf_matrix)
+
         self.similarities = []
         for idx, row in text_data.iterrows():
             similar_indices = cosine_similarities[idx].argsort()[:-66:-1]
@@ -58,7 +61,7 @@ class Engine:
             if product_id in product.keys():
                 return product[product_id]
 
-    def get_similar_score_for_item(self, product_id, scores):
+    def get_similar_score_for_item(self, product_id, scores, as_tuple=False):
         """
         Get the similarity score for a single item related to a product.
 
@@ -68,7 +71,12 @@ class Engine:
         """
         for idx, score in enumerate(scores):
             if score[1] == product_id:
-                return score[0]
+                if as_tuple:
+                    return score
+                else:
+                    return score[0]
+
+
 
     def get_text_data(self, key):
         """
@@ -81,31 +89,15 @@ class Engine:
         data = []
         for product in Product().get_all():
             if key == 'refined_specification':
-                text = Transform(product).get('specification').refined().text()
+                text = Transform(product).get('specification').refined().text().lower()
             else:
-                text = Transform(product).get(key).text()
+                text = Transform(product).get(key).text().lower()
 
             data.append({'product_id': product['id'], 'text': text})
 
-        print("Training data ingested in %s seconds." % (time.time() - start))
+        print("Text parsed in %s seconds." % (time.time() - start))
 
         return pd.DataFrame(data)
-
-
-def matching_score(parent_id, item_id):
-    """
-    Calculates the word-for-word matching of two product specs.
-
-    :param parent_id:
-    :param item_id:
-    :return: matching score.
-    """
-    parent_list = get_refined_spec_word_list(product_id=parent_id)
-    item_list = get_refined_spec_word_list(product_id=item_id)
-
-    matches = set(parent_list).intersection(item_list)
-
-    return float(len(matches) / len(parent_list))
 
 
 def get_refined_spec_word_list(product_id):

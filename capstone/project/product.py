@@ -35,3 +35,6 @@ class Product:
         """
 
         return list(filter(lambda product: product['id'] == product_id, self.get_all()))[0]
+
+    def get_manually_selected_related_items(self, product_id, count=3):
+        return self.find_by_id(product_id)['related'][:count]
